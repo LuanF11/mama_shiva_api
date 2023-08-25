@@ -6,6 +6,13 @@ import pratoRouter from './routes/pratoRouter'
 import duvidaRouter from './routes/duvidaRouter'
 import enderecoRouter from './routes/enderecoRouter'
 import reservaRouter from './routes/reservaRouter'
+import cors from 'cors'
+
+const corsOptions = {
+  origin: '*',
+  credentials: true,
+  optionSuccessStatus: 200
+}
 
 export class App {
   public server: express.Application
@@ -20,6 +27,7 @@ export class App {
     this.server.use(express.json())
     this.server.use(express.urlencoded({ extended: true }))
     this.server.use(express.static(path.join(__dirname, 'public')))
+    this.server.use(cors(corsOptions))
   }
 
   private routers (): void {
